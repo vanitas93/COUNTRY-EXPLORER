@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: rgb(236, 236, 236);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.countries-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.country-card {
+  height: 450px;
+  width: 300px;
+  border: 1px solid black;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 12px;
+  background-color: white;
+  overflow: hidden;
+  object-fit: fill;
+}
+
+.flags {
+  width: 100%;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.flags img {
+  width: 100%;
+  height: auto;
+  object-fit: fill;
+  box-shadow: 0 1px 25px -2px rgb(190, 190, 190);
+}
+
+.country-text {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.country-text h2 {
+  margin: 1rem 0;
+}
