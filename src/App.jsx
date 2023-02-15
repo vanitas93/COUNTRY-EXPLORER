@@ -4,6 +4,9 @@ import CountryCard from "./components/CountryCard";
 import Searchbar from "./components/Searchbar";
 import Select from "./components/Select";
 
+//Logo
+import { BsFillMoonFill } from "react-icons/bs";
+
 import { fetchAllData, fetchDataName } from "./services/services";
 
 function App() {
@@ -67,10 +70,16 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>TAKE ME HOME COUNTRY ROAD</h1>
+        <h1>Where in the world?</h1>
+        <button className="dark-mode-btn">
+          <BsFillMoonFill />
+          Dark Mode
+        </button>
+      </header>
+      <div className="handlers">
         <Searchbar setInputText={setInputText} inputText={inputText} />
         <Select setRegionHandler={setRegionHandler} />
-      </header>
+      </div>
       <div className="countries-list">
         {data ? (
           filteredData.map((item) => {

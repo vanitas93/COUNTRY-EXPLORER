@@ -6,6 +6,8 @@
 
 body {
   background-color: rgb(236, 236, 236);
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 600;
 }
 
 .App {
@@ -13,20 +15,74 @@ body {
   flex-direction: column;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 3rem;
+  box-shadow: 0 1px 15px -2px rgb(190, 190, 190);
+}
+
+.dark-mode-btn {
+  border: 1px solid black;
+  padding: 0.5rem 1rem;
+}
+
+.handlers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3rem;
+}
+
+.searchbar input,
+select {
+  padding: 1rem;
+  cursor: pointer;
+  width: 12rem;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background-image: none;
+  border-radius: 3px;
+}
+
+.searchbar input {
+  width: 40rem;
+  padding: 1.5rem 1rem;
+}
+
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  background: white;
+  color: black;
+  cursor: pointer;
+  pointer-events: none;
+}
+
 .countries-list {
   display: flex;
+  align-items: center;
+  justify-content: start;
   flex-wrap: wrap;
 }
 
 .country-card {
   height: 450px;
-  width: 300px;
-  border: 1px solid black;
-  margin: 2rem;
+  width: 350px;
+  box-shadow: 0 1px 25px -2px rgb(190, 190, 190);
   display: flex;
+  margin: 2rem 3rem;
   flex-direction: column;
   align-items: center;
-  border-radius: 12px;
+  justify-content: space-between;
+  border-radius: 7px;
   background-color: white;
   overflow: hidden;
   object-fit: fill;
@@ -34,22 +90,25 @@ body {
 
 .flags {
   width: 100%;
-  flex-grow: 1;
-  flex-shrink: 1;
 }
 
 .flags img {
   width: 100%;
-  height: auto;
   object-fit: fill;
-  box-shadow: 0 1px 25px -2px rgb(190, 190, 190);
+  box-shadow: 0 0 15px 2px rgb(190, 190, 190);
 }
 
 .country-text {
-  flex-grow: 1;
-  flex-shrink: 1;
+  margin: 2rem 2rem 4rem 2rem;
 }
 
 .country-text h2 {
   margin: 1rem 0;
+}
+
+/*Dark Mode Settings*/
+
+.dark-mode {
+  background-color: hsl(207, 26%, 17%);
+  color: hsl(0, 0%, 100%);
 }

@@ -8,7 +8,12 @@ function Searchbar({ setInputText, inputText }) {
   return (
     <div className="searchbar">
       <form action="submit">
-        <input value={inputText} onChange={inputTextHandler} type="text" />
+        <input
+          placeholder="Search for a country..."
+          value={inputText}
+          onChange={inputTextHandler}
+          type="text"
+        />
       </form>
     </div>
   );
