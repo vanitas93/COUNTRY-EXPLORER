@@ -8,6 +8,7 @@ import Select from "./components/Select";
 import { BsFillMoonFill } from "react-icons/bs";
 
 import { fetchAllData, fetchDataName } from "./services/services";
+import CountryPageInd from "./components/CountryPageInd";
 
 function App() {
   //Variables
@@ -15,6 +16,8 @@ function App() {
   const [inputText, setInputText] = useState("");
   const [region, setRegion] = useState("all");
   const [filteredData, setFilteredData] = useState([]);
+  const [DarkModeTheme, setDarkModeTheme] = useState(false);
+  const [countryActivated, setCountryActivated] = useState(false);
 
   //UseEffects
 
@@ -67,37 +70,83 @@ function App() {
     }
   };
 
+  //Dark Mode Activation
+  const darkModeHandler = () => {
+    setDarkModeTheme(!DarkModeTheme);
+    const header = document.querySelector(".main-header");
+    const countryCard = document.querySelectorAll(".country-card");
+    if (DarkModeTheme === false) {
+      document.body.classList.add("dark-mode");
+      header.classList.add("dark-mode");
+      countryCard.forEach((countryCard) => {
+        countryCard.classList.add("dark-mode");
+      });
+    } else {
+      document.body.classList.remove("dark-mode");
+      header.classList.remove("dark-mode");
+      countryCard.forEach((countryCard) => {
+        countryCard.classList.remove("dark-mode");
+      });
+    }
+  };
+
   return (
     <div className="App">
-      <header>
+      <header className="main-header">
         <h1>Where in the world?</h1>
-        <button className="dark-mode-btn">
+        <button onClick={darkModeHandler} className="dark-mode-btn">
           <BsFillMoonFill />
           Dark Mode
         </button>
       </header>
-      <div className="handlers">
-        <Searchbar setInputText={setInputText} inputText={inputText} />
-        <Select setRegionHandler={setRegionHandler} />
-      </div>
-      <div className="countries-list">
-        {data ? (
-          filteredData.map((item) => {
-            return (
-              <CountryCard
-                key={item.name.common}
-                name={item.name.common}
-                flag={item.flags.png}
-                capital={item.capital}
-                population={item.population}
-                region={item.region}
-              />
-            );
-          })
-        ) : (
-          <p>Data Loading...</p>
-        )}
-      </div>
+      {countryActivated ? (
+        <div className="indPage">
+          filteredData.filter((item) =>
+          {
+            <CountryPageInd
+              flag={item.flags.png}
+              key={item.name.common}
+              name={item.name.common}
+              nameNative={item.name.nativeName}
+              population={item.population}
+              region={item.region}
+              subRegion={item.subregion}
+              capital={item.capital}
+              topLevelDomain={item.tld}
+              currencies={item.currencies}
+              languages={item.languages}
+            />
+          }
+          )
+        </div>
+      ) : (
+        <div className="main-page">
+          <div className="handlers">
+            <Searchbar setInputText={setInputText} inputText={inputText} />
+            <Select setRegionHandler={setRegionHandler} />
+          </div>
+          <div className="countries-list">
+            {data ? (
+              filteredData.map((item) => {
+                return (
+                  <CountryCard
+                    setCountryActivated={setCountryActivated}
+                    countryActivated={countryActivated}
+                    key={item.name.common}
+                    name={item.name.common}
+                    flag={item.flags.png}
+                    capital={item.capital}
+                    population={item.population}
+                    region={item.region}
+                  />
+                );
+              })
+            ) : (
+              <p>Data Loading...</p>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

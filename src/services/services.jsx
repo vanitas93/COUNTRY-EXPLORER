@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const fetchAllData = async () => {
   const allInfo = await axios("https://restcountries.com/v3.1/all");
+  console.log(allInfo);
   return allInfo;
 };
 export const fetchDataName = async (name) => {

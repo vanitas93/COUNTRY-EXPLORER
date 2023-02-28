@@ -1,8 +1,20 @@
 import React from "react";
 
-function CountryCard({ name, flag, capital, population, region }) {
+function CountryCard({
+  name,
+  flag,
+  capital,
+  population,
+  region,
+  setCountryActivated,
+  countryActivated,
+}) {
+  const individualCardHandler = () => {
+    setCountryActivated(!countryActivated);
+  };
+
   return (
-    <div className="country-card">
+    <div className="country-card" onClick={individualCardHandler}>
       <div className="flags">
         <img src={flag} alt="Country-flag" />
       </div>
